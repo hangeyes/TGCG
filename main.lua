@@ -1,18 +1,20 @@
 function love.load()
 
 	Class = require("libs.humpClass")
+	tempDegree = 0
 	
 end
 
 function love.update(dt)
 
-	-- your code
+	tempDegree = tempDegree + ( math.pi / 5 * dt )
 	
 end
 
 function love.draw()
 
-	-- your code
+	love.graphics.print("Many cards, very game.", 500,300, tempDegree + 1)
+	love.graphics.print("So fun. Wow.", 600,500, -tempDegree*2.3)
 	
 end
  
