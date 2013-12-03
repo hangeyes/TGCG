@@ -169,6 +169,7 @@ end
 local CheckBox = Class
 {
 	----- Atrybuty
+	-- text
 	-- x
 	-- y
 	-- visible
@@ -176,22 +177,27 @@ local CheckBox = Class
 	-- checked
 
 	----- Metody
-
-	-- Init (x, y, checked)
+	-- Init (text, x, y, checked)
 
 	-- SetPos (x, y)
+	-- SetText (text)
 	-- SetVisible (bool)
 	-- SetEnabled (bool)
 	-- SetChecked (bool)
 }
 
-function CheckBox:Init(x, y, checked)
+function CheckBox:Init(text, x, y, checked)
+	self.text = text
 	self.x, self.y = x, y
 	self.checked = checked
 end
 
 function CheckBox:SetPos(x, y)
 	self.x, self.y = x, y
+end
+
+function CheckBox:SetText (text)
+	self.text = text
 end
 
 function CheckBox:SetVisible(bool)
