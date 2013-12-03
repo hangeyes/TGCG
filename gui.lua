@@ -54,7 +54,7 @@ function Button:Init (text, x, y, width)
 	self.height	= 32
 	self.visible= true
 	self.enabled= true
-	self.clicke	= false
+	self.clicked	= false
 end
 
 function Button:SetPos (x, y)
