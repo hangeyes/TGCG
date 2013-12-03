@@ -14,7 +14,7 @@ end
 function love.draw()
 
 	love.graphics.print("Many cards, very game.", 500,300, tempDegree + 1)
-	love.graphics.print("So fun. Wow xD", 600,500, -tempDegree*2.3)
+	love.graphics.print("So fun. Wow.", 600,500, -tempDegree*2.3)
 	
 end
  
