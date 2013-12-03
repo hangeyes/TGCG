@@ -7,20 +7,22 @@
 -- ProgressBar
 -- List
 -- OptionCheck
------------------------------------------------
 
 -----------------------------------------------
 -- Zmienne globalne ---------------------------
------------------------------------------------
 
-gui_stdHeight	= 32		-- Standardowa wysokość elementów GUI
-
+local gui_stdHeight	= 32		-- Standardowa wysokość elementów GUI
 
 -----------------------------------------------
--- BUTTON -------------------------------------
------------------------------------------------
+-- Funkcje ------------------------------------
 
-Button = Class
+
+
+-----------------------------------------------
+-- Klasy --------------------------------------
+
+-- BUTTON -------------------
+local Button = Class
 {
 	----- Atrybuty
 	-- text			-- Tekst wyświetany przez przycisk
@@ -101,11 +103,9 @@ function Button:Draw ()
 end
 
 
---------------------------------------------
-----ProgressBar-----------------------------
---------------------------------------------
 
-ProgressBar = Class
+-- PROGRESS BAR--------------
+local ProgressBar = Class
 {
 	----- Atrybuty
 	-- x
