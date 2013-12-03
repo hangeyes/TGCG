@@ -70,63 +70,64 @@ function Button:Draw ()
 	
 end
 
+
 --------------------------------------------
 ----ProgressBar-----------------------------
 --------------------------------------------
 
 ProgressBar = Class
 {
-  -- x
-  -- y
-  -- width
-  -- height
+	-- x
+	-- y
+	-- width
+	-- height
   
-  -- visible
-  -- enabled
+	-- visible
+	-- enabled
   
-  -- progress   -- jak bardzo "wypełniony" jest pasek postępu
+	-- progress   -- jak bardzo "wypełniony" jest pasek postępu
   
-  ----- Funkcje
+	----- Funkcje
   
-  -- init(progress,x,y,width,height)
+	-- init(progress,x,y,width,height)
   
-  --SetPos(x,y)
-  --SetSize(width,height)
-  --SetVisible(bool)
-  --SetEnabled(bool)
-  --SetProgress(progress)
+	--SetPos(x,y)
+	--SetSize(width,height)
+	--SetVisible(bool)
+	--SetEnabled(bool)
+	--SetProgress(progress)
   
-  --Draw()
+	--Draw()
 }
 
 function ProgressBar:Init (progress,x,y,width,height)
-  self.progress = progress
-  self.x, self.y - x, y
-  self.width, self.height = width, height
-  self.visible = true
-  self.enabled = true
+	self.progress = progress
+	self.x, self.y - x, y
+	self.width, self.height = width, height
+	self.visible = true
+	self.enabled = true
 end
 
 function ProgressBar:SetPos (x,y)
-  self.x, self.y = x, y
+	self.x, self.y = x, y
 end
 
 function ProgressBar:SetSize (width,height)
-  self.width, self.height = width, height
+	self.width, self.height = width, height
 end
 
 function ProgressBar:SetVisible (bool)
-  self.visible = bool
+	self.visible = bool
 end
 
 function ProgressBar:SetEnabled (bool)
-  self.enabled = bool
+	self.enabled = bool
 end
 
 function ProgressBar:SetProgress (progress)
-  self.progress = progress
+	self.progress = progress
 end
 
 function ProgressBar:Draw()
-   
+	
 end
