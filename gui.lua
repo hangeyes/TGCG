@@ -26,6 +26,9 @@ Button = Class
 	
 	-- visible		-- Czy przycisk jest widoczny
 	-- enabled		-- Czy przycisk jest aktywny
+	-- clicked		-- Czy przycisk jest w danej chwili wciśniety
+	
+	-- click		-- Funkcja wywoływana podczas kliknięcia
 	
 	----- Funkcje
 	
@@ -35,6 +38,10 @@ Button = Class
 	-- SetVisible (bool)
 	-- SetEnabled (bool)
 	-- SetText (text)
+	-- SetClick (clickAction)
+	
+	-- OnClick ()
+	-- OnRelease ()
 	
 	-- Draw ()
 }
@@ -47,6 +54,7 @@ function Button:Init (text, x, y, width)
 	self.height	= 32
 	self.visible= true
 	self.enabled= true
+	self.clicke	= false
 end
 
 function Button:SetPos (x, y)
@@ -64,6 +72,21 @@ end
 
 function Button:SetText (text)
 	self.text = boot
+end
+
+function Button:SetClick (clickAction)
+	self.click = clickAction
+end
+
+function Button:OnClick ()
+	if enabled == true then
+		self.clicked = true
+		self.click()
+	end
+end
+
+function Button:OnRelease ()
+	self.clicked = false
 end
 
 function Button:Draw ()
@@ -89,21 +112,21 @@ ProgressBar = Class
   
 	----- Funkcje
   
-	-- init(progress,x,y,width,height)
+	-- Init(x,y,width,progress)
   
-	--SetPos(x,y)
-	--SetSize(width,height)
-	--SetVisible(bool)
-	--SetEnabled(bool)
-	--SetProgress(progress)
+	-- SetPos(x,y)
+	-- SetSize(width,height)
+	-- SetVisible(bool)
+	-- SetEnabled(bool)
+	-- SetProgress(progress)
   
-	--Draw()
+	-- Draw()
 }
 
-function ProgressBar:Init (progress,x,y,width,height)
+function ProgressBar:Init (x,y,width,progress)
 	self.progress = progress
 	self.x, self.y - x, y
-	self.width, self.height = width, height
+	self.width, self.height = width, 32
 	self.visible = true
 	self.enabled = true
 end
