@@ -27,7 +27,6 @@ Button = Class
 	-- x			-- Pozycja X
 	-- y			-- Pozycja Y
 	-- width		-- Szerokość przycisku
-	-- height		-- Wysokość przycisku
 	
 	-- visible		-- Czy przycisk jest widoczny
 	-- enabled		-- Czy przycisk jest aktywny
@@ -56,7 +55,6 @@ function Button:Init (text, x, y, width)
 	self.x		= x
 	self.y		= y
 	self.width	= width
-	self.height	= 32
 	self.visible= true
 	self.enabled= true
 	self.clicked= false
@@ -109,20 +107,19 @@ end
 
 ProgressBar = Class
 {
+	----- Atrybuty
 	-- x
 	-- y
 	-- width
-	-- height
+	-- progress
   
 	-- visible
 	-- enabled
-  
-	-- progress   -- jak bardzo "wypełniony" jest pasek postępu
+
   
 	----- Funkcje
-  
 	-- Init(x,y,width,progress)
-  
+
 	-- SetPos(x,y)
 	-- SetSize(width)
 	-- SetVisible(bool)
@@ -135,7 +132,7 @@ ProgressBar = Class
 function ProgressBar:Init (x,y,width,progress)
 	self.progress = progress
 	self.x, self.y - x, y
-	self.width, self.height = width, 32
+	self.width = width
 	self.visible = true
 	self.enabled = true
 end
