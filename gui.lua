@@ -111,14 +111,15 @@ ProgressBar = Class
 	-- x
 	-- y
 	-- width
-	-- progress
+	-- maxProgress
+	-- currentProgress
   
 	-- visible
 	-- enabled
 
   
 	----- Funkcje
-	-- Init(x,y,width,progress)
+	-- Init(x,y,width, maxProgress, currentProgress)
 
 	-- SetPos(x,y)
 	-- SetSize(width)
@@ -129,8 +130,9 @@ ProgressBar = Class
 	-- Draw()
 }
 
-function ProgressBar:Init (x,y,width,progress)
-	self.progress = progress
+function ProgressBar:Init (x,y,width, maxProgress, currentProgress)
+	self.maxProgress = maxProgress
+	self.currentProgress = currentProgress
 	self.x, self.y - x, y
 	self.width = width
 	self.visible = true
@@ -154,7 +156,7 @@ function ProgressBar:SetEnabled (bool)
 end
 
 function ProgressBar:SetProgress (progress)
-	self.progress = progress
+	self.currentProgress = progress
 end
 
 function ProgressBar:Draw()
