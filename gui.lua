@@ -34,7 +34,7 @@ Button = Class
 	
 	-- click		-- Funkcja wywoływana podczas kliknięcia
 	
-	----- Funkcje
+	----- Metody
 	-- Init (text, x, y, width)	-- Konstruktor
 	
 	-- SetPos (x, y)
@@ -118,7 +118,7 @@ ProgressBar = Class
 	-- enabled
 
   
-	----- Funkcje
+	----- Metody
 	-- Init(x,y,width, maxProgress, currentProgress)
 
 	-- SetPos(x,y)
