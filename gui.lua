@@ -162,3 +162,50 @@ end
 function ProgressBar:Draw()
 	
 end
+
+-------------------------------------------
+----CheckBox-------------------------------
+-------------------------------------------
+
+CheckBox = Class
+{
+  ---Atrybuty
+  
+  -- x
+  -- y
+  -- visible
+  -- enabled
+  -- checked
+  
+  --- Metody
+  
+  -- Init(x,y,checked)
+  
+  -- SetPos(x,y)
+  -- SetVisible(bool)
+  -- SetEnabled(bool)
+  -- SetChecked(bool)
+}
+
+function CheckBox:Init(x,y,checked)
+  self.x, self.y = x, y
+  self.checked = checked
+end
+
+function CheckBox:SetPos(x,y)
+  self.x, self.y = x, y
+end
+
+function CheckBox:SetVisible(bool)
+  self.visible = bool
+end
+
+function CheckBox:SetEnabled(bool)
+  self.enabled = bool
+end
+
+function CheckBox:SetChecked(bool)
+  if self.enabled == true then
+    self.checked = bool
+  end
+end
