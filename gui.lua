@@ -10,14 +10,19 @@
 -----------------------------------------------
 
 -----------------------------------------------
+-- Zmienne globalne ---------------------------
+-----------------------------------------------
+
+gui_stdHeight	= 32		-- Standardowa wysokość elementów GUI
+
+
+-----------------------------------------------
 -- BUTTON -------------------------------------
 -----------------------------------------------
 
--- Deklaracja klasy
 Button = Class
 {
 	----- Atrybuty
-	
 	-- text			-- Tekst wyświetany przez przycisk
 	-- x			-- Pozycja X
 	-- y			-- Pozycja Y
@@ -31,10 +36,10 @@ Button = Class
 	-- click		-- Funkcja wywoływana podczas kliknięcia
 	
 	----- Funkcje
-	
 	-- Init (text, x, y, width)	-- Konstruktor
 	
 	-- SetPos (x, y)
+	-- SetSize (width)
 	-- SetVisible (bool)
 	-- SetEnabled (bool)
 	-- SetText (text)
@@ -54,12 +59,16 @@ function Button:Init (text, x, y, width)
 	self.height	= 32
 	self.visible= true
 	self.enabled= true
-	self.clicked	= false
+	self.clicked= false
 end
 
 function Button:SetPos (x, y)
 	self.x = x
 	self.y = y
+end
+
+function Button:SetSize (width)
+	self.width = width
 end
 
 function Button:SetVisible (bool)
@@ -115,7 +124,7 @@ ProgressBar = Class
 	-- Init(x,y,width,progress)
   
 	-- SetPos(x,y)
-	-- SetSize(width,height)
+	-- SetSize(width)
 	-- SetVisible(bool)
 	-- SetEnabled(bool)
 	-- SetProgress(progress)
@@ -135,8 +144,8 @@ function ProgressBar:SetPos (x,y)
 	self.x, self.y = x, y
 end
 
-function ProgressBar:SetSize (width,height)
-	self.width, self.height = width, height
+function ProgressBar:SetSize (width)
+	self.width = width
 end
 
 function ProgressBar:SetVisible (bool)
