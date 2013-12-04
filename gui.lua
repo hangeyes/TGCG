@@ -21,6 +21,32 @@ local gui_stdHeight	= 32		-- Standardowa wysokość elementów GUI
 -----------------------------------------------
 -- Klasy --------------------------------------
 
+-- GUIMANAGER----------------
+local GuiManager = Class
+{
+	----- Atrybuty
+	-- elements = {}		-- zawiera wszystkie elementy GUI
+	
+	----- Metody
+	-- Init ()
+	
+	-- CreateButton (name, text, x, y, width)
+	-- CreateProgressBar (name, text, x, y, width)
+}
+
+function GuiManager:Init ()
+	self.elements = {}
+end
+
+function GuiManager:CreateButton (name, ...)
+	elements[name] = Button:Init (unpack(arg))
+end
+
+function GuiManager:CreateProgressBar (name, ...)
+	elements[name] = ProgressBar:Init (unpack(arg))
+end
+
+
 -- BUTTON -------------------
 local Button = Class
 {
@@ -45,6 +71,8 @@ local Button = Class
 	-- SetEnabled (bool)
 	-- SetText (text)
 	-- SetClick (clickAction)
+	
+	-- GetPos ()
 	
 	-- OnClick ()
 	-- OnRelease ()
@@ -87,11 +115,24 @@ function Button:SetClick (clickAction)
 	self.click = clickAction
 end
 
+function Button:GetPos ()
+	return self.x, self.y
+end
+
 function Button:OnClick ()
-	if enabled == true then
-		self.clicked = true
-		self.click()
-	end
+	if ( x >= self.x ) then
+		if ( self.x + self.width >= x ) then
+			if ( y >= self.y ) then
+				if ( self.y + gui_stdHeight >= y ) then
+					if enabled == true then
+						self.clicked = true
+						self.click()
+						return true
+					end else return false
+				end else return false
+			end else return false
+		end else return false
+	end else return false
 end
 
 function Button:OnRelease ()
@@ -130,7 +171,7 @@ local ProgressBar = Class
 	-- Draw()
 }
 
-function ProgressBar:Init (x,y,width, maxProgress, currentProgress)
+function ProgressBar:Init (x, y, width, maxProgress, currentProgress)
 	self.maxProgress = maxProgress
 	self.currentProgress = currentProgress
 	self.x, self.y - x, y
@@ -139,7 +180,7 @@ function ProgressBar:Init (x,y,width, maxProgress, currentProgress)
 	self.enabled = true
 end
 
-function ProgressBar:SetPos (x,y)
+function ProgressBar:SetPos (x, y)
 	self.x, self.y = x, y
 end
 
