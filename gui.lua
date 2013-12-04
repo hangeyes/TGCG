@@ -213,3 +213,54 @@ function CheckBox:SetChecked(bool)
 		self.checked = bool
 	end
 end
+
+--LABEL------------------------
+local Label = Class
+{
+	----- Atrybuty
+	-- text
+	-- x
+	-- y
+	
+	-- visible
+	
+	-- textFont		-- krój tekstu
+	-- textSize		-- rozmiar czcionki
+	-- textColor	-- kolor czcionki
+	
+	----- Metody
+	-- Init(text,x,y,textFont,textSize,textColor)
+	
+	-- SetPos(x,y)
+	-- SetVisible(bool)
+	-- SetText(text)
+	-- SetTextType(textFont, textSize, textColor)	-- ustawia wszystkie właściwości tekstu, potrzebna nowa nazwa, bo obecna jest do kitu
+	
+	-- Draw()
+}
+
+function Label:Init(text,x,y,textFont,textSize,textColor)
+	self.text = text
+	self.x, self.y = x, y
+	self.textFont, self.textSize, self.textColor = textFont, textSize, textColor
+end
+
+function Label:SetPos(x,y)
+	self.x, self.y = x, y
+end
+
+function Label:SetVisible(bool)
+	self.visible = bool
+end
+
+function Label:SetText(text)
+	self.text = text
+end
+
+function Label:SetTextType(textFont, textSize, textColor)
+	self.textFont, self.textSize, self.textColor = textFont, textSize, textColor
+end
+
+function Label:Draw()
+
+end
