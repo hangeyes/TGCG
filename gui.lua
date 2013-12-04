@@ -31,7 +31,11 @@ local GuiManager = Class
 	-- Init ()
 	
 	-- CreateButton (name, text, x, y, width)
-	-- CreateProgressBar (name, text, x, y, width)
+	-- CreateProgressBar (name, x, y, width, maxProgress, currentProgress)
+	-- CreateCheckBox (name, text, x, y, checked)
+	-- CreateLabel (name, text, x, y, textFont, textSize, textColor)
+	
+	-- Delete (name)
 }
 
 function GuiManager:Init ()
@@ -46,6 +50,18 @@ function GuiManager:CreateProgressBar (name, ...)
 	elements[name] = ProgressBar:Init (unpack(arg))
 end
 
+function GuiManager:CreateCheckBox (name, ...)
+	elements[name] = CheckBox:Init (unpack(arg))
+end
+
+function GuiManager:CreateLabel (name, ...)
+	elements[name] = Label:Init (unpack(arg))
+end
+
+function GuiManager:Delete (name)
+	if elements[name].Delete != nil then elements[name].Delete() end	-- Wywołanie destruktora jeśli takowy istnieje
+	elements[name] = nil
+end
 
 -- BUTTON -------------------
 local Button = Class
@@ -91,8 +107,8 @@ function Button:Init (text, x, y, width)
 end
 
 function Button:SetPos (x, y)
-	self.x = x
-	self.y = y
+	if self.x != nil then self.x = x end
+	if self.y != nil then self.y = y end
 end
 
 function Button:SetSize (width)
@@ -174,14 +190,15 @@ local ProgressBar = Class
 function ProgressBar:Init (x, y, width, maxProgress, currentProgress)
 	self.maxProgress = maxProgress
 	self.currentProgress = currentProgress
-	self.x, self.y - x, y
+	self.x, self.y = x, y
 	self.width = width
 	self.visible = true
 	self.enabled = true
 end
 
 function ProgressBar:SetPos (x, y)
-	self.x, self.y = x, y
+	if self.x != nil then self.x = x end
+	if self.y != nil then self.y = y end
 end
 
 function ProgressBar:SetSize (width)
@@ -234,7 +251,8 @@ function CheckBox:Init(text, x, y, checked)
 end
 
 function CheckBox:SetPos(x, y)
-	self.x, self.y = x, y
+	if self.x != nil then self.x = x end
+	if self.y != nil then self.y = y end
 end
 
 function CheckBox:SetText (text)
@@ -255,6 +273,8 @@ function CheckBox:SetChecked(bool)
 	end
 end
 
+
+
 --LABEL------------------------
 local Label = Class
 {
@@ -270,36 +290,39 @@ local Label = Class
 	-- textColor	-- kolor czcionki
 	
 	----- Metody
-	-- Init(text,x,y,textFont,textSize,textColor)
+	-- Init(text, x, y, textFont, textSize, textColor)
 	
-	-- SetPos(x,y)
-	-- SetVisible(bool)
-	-- SetText(text)
-	-- SetTextType(textFont, textSize, textColor)	-- ustawia wszystkie właściwości tekstu, potrzebna nowa nazwa, bo obecna jest do kitu
+	-- SetPos (x, y)
+	-- SetVisible (bool)
+	-- SetText (text)
+	-- SetFormat (textFont, textSize, textColor)	-- ustawia właściwości tekstu
 	
 	-- Draw()
 }
 
-function Label:Init(text,x,y,textFont,textSize,textColor)
+function Label:Init (text, x, y, textFont, textSize, textColor)
 	self.text = text
 	self.x, self.y = x, y
 	self.textFont, self.textSize, self.textColor = textFont, textSize, textColor
 end
 
-function Label:SetPos(x,y)
-	self.x, self.y = x, y
+function Label:SetPos (x, y)
+	if self.x != nil then self.x = x end
+	if self.y != nil then self.y = y end
 end
 
-function Label:SetVisible(bool)
+function Label:SetVisible (bool)
 	self.visible = bool
 end
 
-function Label:SetText(text)
+function Label:SetText (text)
 	self.text = text
 end
 
-function Label:SetTextType(textFont, textSize, textColor)
-	self.textFont, self.textSize, self.textColor = textFont, textSize, textColor
+function Label:SetFormat (textFont, textSize, textColor)
+	if textFont != nil then self.textFont = textFont end
+	if textSize != nil then self.textSize = textSize end
+	if textColor != nil then self.textColor = textColor end
 end
 
 function Label:Draw()
