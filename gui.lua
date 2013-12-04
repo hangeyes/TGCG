@@ -26,6 +26,7 @@ local GuiManager = Class
 {
 	----- Atrybuty
 	-- elements = {}		-- zawiera wszystkie elementy GUI
+	-- clicked				-- zawiera nazwę elementu który został "naciśnięty"
 	
 	----- Metody
 	-- Init ()
@@ -34,6 +35,9 @@ local GuiManager = Class
 	-- CreateProgressBar (name, x, y, width, maxProgress, currentProgress)
 	-- CreateCheckBox (name, text, x, y, checked)
 	-- CreateLabel (name, text, x, y, textFont, textSize, textColor)
+	
+	-- OnClick (x, y)
+	-- OnRelease ()
 	
 	-- Delete (name)
 }
@@ -56,6 +60,22 @@ end
 
 function GuiManager:CreateLabel (name, ...)
 	elements[name] = Label:Init (unpack(arg))
+end
+
+function OnClick (x, y)
+	for name, element in pairs(self.elements) do
+		if element.OnClick(x, y) == true then
+			if element.OnRelease != nil then self.clicked = name end	-- dodaje kliknięty element do "naciśniętych"
+			break
+		end
+	end
+end
+
+function OnRelease ()
+	if self.clicked != nil then
+		self.elements[self.clicked].OnRelease()
+		self.clicked = nil
+	end
 end
 
 function GuiManager:Delete (name)
@@ -90,7 +110,7 @@ local Button = Class
 	
 	-- GetPos ()
 	
-	-- OnClick ()
+	-- OnClick (x, y)
 	-- OnRelease ()
 	
 	-- Draw ()
@@ -135,7 +155,7 @@ function Button:GetPos ()
 	return self.x, self.y
 end
 
-function Button:OnClick ()
+function Button:OnClick (x, y)
 	if ( x >= self.x ) then
 		if ( self.x + self.width >= x ) then
 			if ( y >= self.y ) then
