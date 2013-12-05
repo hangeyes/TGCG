@@ -30,6 +30,7 @@ local GuiManager = Class
 	
 	----- Metody
 	-- Init ()
+	-- Delete ()
 	
 	-- CreateButton (name, text, x, y, width)
 	-- CreateProgressBar (name, x, y, width, maxProgress, currentProgress)
@@ -39,11 +40,24 @@ local GuiManager = Class
 	-- OnClick (x, y)
 	-- OnRelease ()
 	
-	-- Delete (name)
+	-- DeleteElement (name)
 }
 
 function GuiManager:Init ()
 	self.elements = {}
+	self.clicked = nil
+end
+
+function GuiManager:Delete ()
+	
+	-- Usuwanie wszystkich instancji
+	for name, element in pairs(self.elements) do
+		if element.Delete ~= nil then
+			element.Delete ()
+		end
+		element = nil
+	end
+	self.clicked = nil
 end
 
 function GuiManager:CreateButton (name, ...)
@@ -65,7 +79,7 @@ end
 function OnClick (x, y)
 	for name, element in pairs(self.elements) do
 		if element.OnClick(x, y) == true then
-			if element.OnRelease != nil then self.clicked = name end	-- dodaje kliknięty element do "naciśniętych"
+			if element.OnRelease ~= nil then self.clicked = name end	-- dodaje kliknięty element do "naciśniętych"
 			break
 		end
 	end
@@ -78,8 +92,8 @@ function OnRelease ()
 	end
 end
 
-function GuiManager:Delete (name)
-	if elements[name].Delete != nil then elements[name].Delete() end	-- Wywołanie destruktora jeśli takowy istnieje
+function GuiManager:DeleteElement (name)
+	if elements[name].Delete ~= nil then elements[name].Delete() end	-- Wywołanie destruktora jeśli takowy istnieje
 	elements[name] = nil
 end
 
@@ -127,8 +141,8 @@ function Button:Init (text, x, y, width)
 end
 
 function Button:SetPos (x, y)
-	if self.x != nil then self.x = x end
-	if self.y != nil then self.y = y end
+	if self.x ~= nil then self.x = x end
+	if self.y ~= nil then self.y = y end
 end
 
 function Button:SetSize (width)
@@ -217,8 +231,8 @@ function ProgressBar:Init (x, y, width, maxProgress, currentProgress)
 end
 
 function ProgressBar:SetPos (x, y)
-	if self.x != nil then self.x = x end
-	if self.y != nil then self.y = y end
+	if self.x ~= nil then self.x = x end
+	if self.y ~= nil then self.y = y end
 end
 
 function ProgressBar:SetSize (width)
@@ -271,8 +285,8 @@ function CheckBox:Init(text, x, y, checked)
 end
 
 function CheckBox:SetPos(x, y)
-	if self.x != nil then self.x = x end
-	if self.y != nil then self.y = y end
+	if self.x ~= nil then self.x = x end
+	if self.y ~= nil then self.y = y end
 end
 
 function CheckBox:SetText (text)
@@ -327,8 +341,8 @@ function Label:Init (text, x, y, textFont, textSize, textColor)
 end
 
 function Label:SetPos (x, y)
-	if self.x != nil then self.x = x end
-	if self.y != nil then self.y = y end
+	if self.x ~= nil then self.x = x end
+	if self.y ~= nil then self.y = y end
 end
 
 function Label:SetVisible (bool)
@@ -340,9 +354,9 @@ function Label:SetText (text)
 end
 
 function Label:SetFormat (textFont, textSize, textColor)
-	if textFont != nil then self.textFont = textFont end
-	if textSize != nil then self.textSize = textSize end
-	if textColor != nil then self.textColor = textColor end
+	if textFont ~= nil then self.textFont = textFont end
+	if textSize ~= nil then self.textSize = textSize end
+	if textColor ~= nil then self.textColor = textColor end
 end
 
 function Label:Draw()
