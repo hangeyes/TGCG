@@ -1,21 +1,25 @@
 function love.load()
 
 	Class = require("libs.humpClass")
-	tempDegree = 0
+	
+	local FPS = 0			-- Liczba klatek na sekundę
+	
+	local gui = GuiManager ()
+	gui.CreateLabel ("FPS", "0 FPS", 10, 10, nil, nil, {255, 255, 255, 0})
 	
 end
 
 function love.update(dt)
 
-	tempDegree = tempDegree + ( math.pi / 5 * dt )
-	
+	FPS = 1000 / dt		-- Obliczanie klatek na sekundę
+	gui.elements["FPS"].SetText (FPS .. " FPS")
+
 end
 
 function love.draw()
 
-	love.graphics.print("Many cards, very game.", 500,300, tempDegree + 1)
-	love.graphics.print("So fun. Wow.", 600,500, -tempDegree*2.3)
 	
+
 end
  
 function love.mousepressed(x, y, button)
