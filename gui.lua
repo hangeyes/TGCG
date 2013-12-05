@@ -22,10 +22,10 @@ local gui_stdHeight	= 32		-- Standardowa wysokość elementów GUI
 -- Klasy --------------------------------------
 
 -- GUIMANAGER----------------
-local GuiManager = Class
+GuiManager = Class
 {
 	----- Atrybuty
-	-- elements = {}		-- zawiera wszystkie elementy GUI
+	-- elements {}			-- zawiera wszystkie elementy GUI
 	-- clicked				-- zawiera nazwę elementu który został "naciśnięty"
 	
 	----- Metody
@@ -63,19 +63,19 @@ function GuiManager:Delete ()
 end
 
 function GuiManager:CreateButton (name, ...)
-	elements[name] = Button:Init (unpack(arg))
+	self.elements[name] = Button:Init (unpack(arg))
 end
 
 function GuiManager:CreateProgressBar (name, ...)
-	elements[name] = ProgressBar:Init (unpack(arg))
+	self.elements[name] = ProgressBar:Init (unpack(arg))
 end
 
 function GuiManager:CreateCheckBox (name, ...)
-	elements[name] = CheckBox:Init (unpack(arg))
+	self.elements[name] = CheckBox:Init (unpack(arg))
 end
 
 function GuiManager:CreateLabel (name, ...)
-	elements[name] = Label:Init (unpack(arg))
+	self.elements[name] = Label:Init (unpack(arg))
 end
 
 function OnClick (x, y)
@@ -110,7 +110,7 @@ end
 
 
 -- BUTTON -------------------
-local Button = Class
+Button = Class
 {
 	----- Atrybuty
 	-- text			-- Tekst wyświetany przez przycisk
@@ -190,11 +190,11 @@ function Button:OnClick (x, y)
 						self.clicked = true
 						self.click()
 						return true
-					end else return false
-				end else return false
-			end else return false
-		end else return false
-	end else return false
+					else return false end
+				else return false end
+			else return false end
+		else return false end
+	else return false end
 end
 
 function Button:OnRelease ()
@@ -208,7 +208,7 @@ end
 
 
 -- PROGRESSBAR --------------
-local ProgressBar = Class
+ProgressBar = Class
 {
 	----- Atrybuty
 	-- x
@@ -270,7 +270,7 @@ end
 
 
 -- CHECKBOX -----------------
-local CheckBox = Class
+CheckBox = Class
 {
 	----- Atrybuty
 	-- text
@@ -322,7 +322,7 @@ end
 
 
 --LABEL------------------------
-local Label = Class
+Label = Class
 {
 	----- Atrybuty
 	-- text

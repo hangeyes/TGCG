@@ -1,6 +1,7 @@
 function love.load()
 
 	Class = require("libs.humpClass")
+	require ("gui")
 	
 	local FPS = 0			-- Liczba klatek na sekundę
 	
