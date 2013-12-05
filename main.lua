@@ -18,13 +18,11 @@ end
 
 function love.draw()
 
-	
+	gui.Draw()		-- Rysuje wszystkie elementy gui
 
 end
  
 function love.mousepressed(x, y, button)
-
-	-- your code
 	
 end
  
