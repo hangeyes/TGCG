@@ -86,7 +86,7 @@ function OnClick (x, y)
 end
 
 function OnRelease ()
-	if self.clicked != nil then
+	if self.clicked ~= nil then
 		self.elements[self.clicked].OnRelease()
 		self.clicked = nil
 	end
