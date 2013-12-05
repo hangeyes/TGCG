@@ -41,6 +41,8 @@ local GuiManager = Class
 	-- OnRelease ()
 	
 	-- DeleteElement (name)
+	
+	-- Draw ()
 }
 
 function GuiManager:Init ()
@@ -96,6 +98,16 @@ function GuiManager:DeleteElement (name)
 	if elements[name].Delete ~= nil then elements[name].Delete() end	-- Wywołanie destruktora jeśli takowy istnieje
 	elements[name] = nil
 end
+
+function GuiManager:Draw ()
+	for name, element in pairs(self.elements) do
+		if element.GetVisible() == true then
+			element.Draw ()
+		end
+	end
+end
+
+
 
 -- BUTTON -------------------
 local Button = Class
