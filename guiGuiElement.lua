@@ -30,9 +30,15 @@ GuiElement = Class
 }
 
 function GuiElement:init (name, x, y)
-	self.name = name
-	self.x, self.y = x, y
-	self.visible = true
+	self.name		= name
+	self.x, self.y	= x, y
+	self.visible	= true
+	self.delete		= GuiElement.delete
+	self.getName	= GuiElement.getName
+	self.getPos		= GuiElement.getPos
+	self.getVisible	= GuiElement.getVisible
+	self.setPos		= GuiElement.setPos
+	self.setVisible	= GuiElement.setVisible
 end
 
 function GuiElement:delete ()

@@ -9,6 +9,7 @@ function love.load()
 	gui:newLabel ("FPS", 10, 10, "0 FPS", clWhite)	-- FPS
 	gui:newButton ("btnTest", 50, 40, "Kliknij mnie", 90, test)
 	
+	degree = 0
 end
 
 function test ()
@@ -22,13 +23,21 @@ end
 function love.update (dt)
 
 	-- FPS
-	gui.elements["FPS"]:setText (string.format("%.0f", 1 / dt) .. " FPS")
+	gui.elements["FPS"]:setText (love.timer.getFPS( ) .. " FPS")
+	
+	degree = degree + dt
+	if gui.elements["btnTest"]:getEnabled() == false then
+		gui.elements["btnTest"]:setPos(love.mouse.getX(), love.mouse.getY())
+	end
 
 end
 
 function love.draw ()
 
 	gui:draw()		-- Rysuje wszystkie elementy GUI
+
+	love.graphics.setColor(clWhite)
+	love.graphics.print(" <-- DEBIL", love.mouse.getX(), love.mouse.getY(), degree)
 
 end
  
