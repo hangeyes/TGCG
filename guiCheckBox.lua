@@ -26,6 +26,10 @@ CheckBox = Class
 		-- setEnabled (bool)
 		-- setText (text)
 		
+		-- onClick (x, y)
+		
+		-- toggle ()
+		
 		-- draw ()
 }
 
@@ -44,6 +48,44 @@ function CheckBox:setChecked (bool)	self.checked = bool end
 function CheckBox:setEnabled (bool)	self.enabled = bool end
 function CheckBox:setText (text)	self.text = text end
 
-function CheckBox:draw ()
-	GuiElement:draw ()	-- TYMCZASOWO
+function CheckBox:onClick (x, y)
+	if ( (x >= self.x) and (self.x+gui_stdHeight >= x) and (y >= self.y) and (self.y + gui_stdHeight >= y) ) then
+		if self.enabled == true then
+			self:toggle()
+			return true
+		else return false end
+	else return false end
+end
+
+function CheckBox:toggle ()
+	if self.checked == true then self:setChecked (false)
+	else self:setChecked (true) end
+end
+
+function CheckBox:draw ()		-- TYMCZASOWO
+	if self.visible == true then
+		if self.enabled == true then
+			love.graphics.setColor (clGrey)
+			love.graphics.rectangle("fill", self.x+gui_cbMargin, self.y+gui_cbMargin, gui_stdHeight-(2*gui_cbMargin), gui_stdHeight-(2*gui_cbMargin))
+			love.graphics.setColor (clLGrey)
+			love.graphics.rectangle("line", self.x+gui_cbMargin, self.y+gui_cbMargin, gui_stdHeight-(2*gui_cbMargin), gui_stdHeight-(2*gui_cbMargin))
+			if self.checked == true then
+				love.graphics.setColor (clWhite)
+				love.graphics.rectangle("fill", self.x+gui_cbMargin +4, self.y+gui_cbMargin +4, gui_stdHeight-(2*gui_cbMargin) -8, gui_stdHeight-(2*gui_cbMargin) -8)
+			end
+			love.graphics.setColor (clWhite)
+			love.graphics.print (self.text, self.x+gui_stdHeight, self.y+10)
+		else
+			love.graphics.setColor (clDGrey)
+			love.graphics.rectangle("fill", self.x, self.y, gui_stdHeight, gui_stdHeight)
+			love.graphics.setColor (clGrey)
+			love.graphics.rectangle("line", self.x, self.y, gui_stdHeight, gui_stdHeight)
+			if self.checked == true then
+				love.graphics.setColor (clLGrey)
+				love.graphics.rectangle("fill", self.x+4, self.y+4, gui_stdHeight-8, gui_stdHeight-8)
+			end
+			love.graphics.setColor (clLGrey)
+			love.graphics.print (self.text, self.x+gui_stdHeight+5, self.y+10)
+		end
+	end
 end

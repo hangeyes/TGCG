@@ -67,7 +67,7 @@ end
 
 function Button:onRelease () self.clicked = false end
 
-function Button:draw ()
+function Button:draw ()		-- TYMCZASOWO
 	if self.visible == true then
 		if self.enabled == true then
 			if self.clicked == false then

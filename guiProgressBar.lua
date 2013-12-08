@@ -10,7 +10,6 @@ ProgressBar = Class
 	-- Atrybuty --
 		
 		-- currentProgress
-		-- enabled
 		-- maxProgress
 		-- width
 
@@ -19,21 +18,20 @@ ProgressBar = Class
 	
 		-- init (name, x, y, width, currentProgress, maxProgress)
 
-		-- getEnabled ()		: bool
 		-- getMaxProgress ()	: int
 		-- getProgress ()		: int, int
 		-- getSize ()			: int
 		
-		-- setEnabled (bool)
 		-- setProgress (currentProgress, maxProgress)
 		-- setSize (width)
+		
+		-- addProgress ()
 
 		-- draw()
 }
 
 function ProgressBar:init (name, x, y, width, currentProgress, maxProgress)
 	GuiElement.init(self, name, x, y)
-	self.enabled = true
 	if currentProgress ~= nil then self.currentProgress = currentProgress
 	else self.currentProgress = 0 end
 	if maxProgress ~= nil then self.maxProgress = maxProgress
@@ -41,12 +39,9 @@ function ProgressBar:init (name, x, y, width, currentProgress, maxProgress)
 	self.width = width
 end
 
-function ProgressBar:getEnabled ()		return self.enabled end
 function ProgressBar:getMaxProgress ()	return self.maxProgress end
 function ProgressBar:getProgress ()		return self.currentProgress, self.maxProgress end
 function ProgressBar:getSize ()			return self.width end
-
-function ProgressBar:setEnabled (bool)	self.enabled = bool end
 
 function ProgressBar:setProgress (currentProgress, maxProgress)
 	if currentProgress ~= nil then self.currentProgress = currentProgress
@@ -57,6 +52,24 @@ end
 
 function ProgressBar:setSize (width) self.width = width end
 
+function ProgressBar:addProgress (x)
+	self.currentProgress = self.currentProgress + x
+	if self.currentProgress > self.maxProgress then self.currentProgress = self.maxProgress end
+end
+
 function ProgressBar:draw()
-	GuiElement:draw ()	-- TYMCZASOWO
+	if self.visible == true then
+		love.graphics.setColor (clGrey)
+		love.graphics.rectangle("fill", self.x, self.y+gui_pbMargin, self.width, gui_stdHeight-(2*gui_pbMargin))
+		love.graphics.setColor (clLGrey)
+		love.graphics.rectangle("line", self.x, self.y+gui_pbMargin, self.width, gui_stdHeight-(2*gui_pbMargin))
+		
+		love.graphics.setColor (clDGrey)
+		love.graphics.rectangle("fill", self.x+gui_pbMargin, self.y+(2*gui_pbMargin), self.width-(2*gui_pbMargin), gui_stdHeight-(4*gui_pbMargin))
+		love.graphics.setColor (clPBProgress)
+		love.graphics.rectangle("fill", self.x+gui_pbMargin, self.y+(2*gui_pbMargin), (self.width-(2*gui_pbMargin))*(self.currentProgress/self.maxProgress), gui_stdHeight-(4*gui_pbMargin))
+		
+		--love.graphics.setColor (clWhite)
+		--love.graphics.print (self.text, self.x+gui_stdHeight, self.y+10)
+	end
 end

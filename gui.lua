@@ -22,4 +22,6 @@ require("guiProgressBar")
 -------------
 -- Zmienne --
 
+gui_cbMargin 	= 6			-- Margines CheckBoxa (margines?!?)
+gui_pbMargin	= 4			-- Margines ProgressBara (margines?!?)
 gui_stdHeight	= 32		-- Standardowa wysokość elementów GUI

@@ -26,6 +26,8 @@ GuiElement = Class
 		-- setPos (x, y)
 		-- setVisible (bool)
 		
+		-- move (x, y)
+		
 		-- draw ()
 }
 
@@ -39,6 +41,7 @@ function GuiElement:init (name, x, y)
 	self.getVisible	= GuiElement.getVisible
 	self.setPos		= GuiElement.setPos
 	self.setVisible	= GuiElement.setVisible
+	self.move		= GuiElement.move
 end
 
 function GuiElement:delete ()
@@ -55,6 +58,8 @@ function GuiElement:setPos (x, y)
 end
 
 function GuiElement:setVisible (bool) self.visible = bool end
+
+function GuiElement:move (x, y) self.x, self.y = self.x+x, self.y+y end
 
 function GuiElement:draw ()
 	love.graphics.print (self.name, self.x, self.y)

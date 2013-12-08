@@ -8,6 +8,9 @@ function love.load()
 	gui = GuiManager()
 	gui:newLabel ("FPS", 10, 10, "0 FPS", clWhite)	-- FPS
 	gui:newButton ("btnTest", 50, 40, "Kliknij mnie", 90, test)
+	gui:newCheckBox ("testCheckBox", 50, 100, "Jestem CheckBoxem!", false)
+	gui:newProgressBar ("testPBar", 50, 140, 200, 15, 100)
+	gui:newButton ("btnPBPlus", 50, 180, "+1", 50, pbPlus)
 	
 	degree = 0
 end
@@ -18,6 +21,10 @@ end
 
 function test2 ()
 	gui.elements["btnTest"]:setEnabled(false)
+end
+
+function pbPlus ()
+	gui.elements["testPBar"]:addProgress(1)
 end
 
 function love.update (dt)
