@@ -5,7 +5,7 @@ function love.load()
 	require ("src.colors")
 	require ("src.interface")
 
-	Gui:init("Test")
+	Gui:init("MainMenu")
 	
 	degree = 0
 end

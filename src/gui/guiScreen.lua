@@ -3,7 +3,7 @@
 
 
 
-GuiManager = Class
+GuiScreen = Class
 {
 	--------------
 	-- Atrybuty --
@@ -31,12 +31,12 @@ GuiManager = Class
 		-- draw ()
 }
 
-function GuiManager:init ()
+function GuiScreen:init ()
 	self.clicked = nil
 	self.elements = {}
 end
 
-function GuiManager:delete ()
+function GuiScreen:delete ()
 	-- Usuwanie wszystkich instancji
 	for name, element in pairs(self.elements) do
 		element.delete ()
@@ -45,32 +45,32 @@ function GuiManager:delete ()
 	self.clicked = nil
 end
 
-function GuiManager:deleteElement (name)
+function GuiScreen:deleteElement (name)
 	elements[name].delete()
 	elements[name] = nil
 end
 
-function GuiManager:newButton (name, ...)
+function GuiScreen:newButton (name, ...)
 	self.elements[name] = Button(name, unpack(arg))
 	--self.elements[name]:Init (unpack(arg))
 end
 
-function GuiManager:newCheckBox (name, ...)
+function GuiScreen:newCheckBox (name, ...)
 	self.elements[name] = CheckBox(name, unpack(arg))
 	--self.elements[name]:Init (unpack(arg))
 end
 
-function GuiManager:newLabel (name, ...)
+function GuiScreen:newLabel (name, ...)
 	self.elements[name] = Label(name, unpack(arg))
 	--self.elements[name]:Init (unpack(arg))
 end
 
-function GuiManager:newProgressBar (name, ...)
+function GuiScreen:newProgressBar (name, ...)
 	self.elements[name] = ProgressBar(name, unpack(arg))
 	--self.elements[name]:Init (unpack(arg))
 end
 
-function GuiManager:onClick (x, y)
+function GuiScreen:onClick (x, y)
 	for name, element in pairs(self.elements) do
 		if (element.onClick ~= nil) then
 			local temp = element:onClick(x, y)
@@ -82,7 +82,7 @@ function GuiManager:onClick (x, y)
 	end
 end
 
-function GuiManager:onHover (x, y)
+function GuiScreen:onHover (x, y)
 	if self.hovered == nil or self.elements[self.hovered]:onHover(x, y) == false then
 		self.hovered = nil
 		for name, element in pairs(self.elements) do
@@ -97,14 +97,14 @@ function GuiManager:onHover (x, y)
 	end
 end
 
-function GuiManager:onRelease ()
+function GuiScreen:onRelease ()
 	if self.clicked ~= nil then
 		self.elements[self.clicked]:onRelease()
 		self.clicked = nil
 	end
 end
 
-function GuiManager:draw ()
+function GuiScreen:draw ()
 	for name, element in pairs(self.elements) do
 			element:draw ()
 	end

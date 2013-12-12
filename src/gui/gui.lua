@@ -9,7 +9,7 @@
 require("src.gui.button")
 require("src.gui.checkBox")
 require("src.gui.guiElement")
-require("src.gui.guiManager")
+require("src.gui.guiScreen")
 -- require("src.gui.image")		Klasa jeszcze nie istnieje
 require("src.gui.label")
 -- require("src.gui.guiList")		Klasa jeszcze nie istnieje
@@ -46,7 +46,7 @@ Gui = Class
 }
 
 function Gui:init (firstScreen)
-	gui = GuiManager()
+	gui = GuiScreen()
 	self.screen = {}
 	
 	InterfaceCreateScreens ()
