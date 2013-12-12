@@ -3,6 +3,16 @@
 
 
 
+-------------
+-- Zmienne --
+
+	gui_cbMargin 	= 6			-- Margines CheckBoxa (margines?!?)
+	
+	
+	
+-------------
+-- Klasa ----
+
 CheckBox = Class
 {	__includes = GuiElement
 
