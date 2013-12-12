@@ -9,6 +9,7 @@ GuiManager = Class
 	-- Atrybuty --
 	
 		-- clicked
+		-- hovered
 		-- elements {}
 
 	------------
@@ -24,6 +25,7 @@ GuiManager = Class
 		-- newProgressBar (name, x, y, width, currentProgress, maxProgress)
 		
 		-- onClick (x, y)
+		-- onHover (x, y)
 		-- onRelease ()
 		
 		-- draw ()
@@ -75,6 +77,21 @@ function GuiManager:onClick (x, y)
 			if temp == true then
 				if element.onRelease ~= nil then self.clicked = name end	-- dodaje klikniêty element do "naciœniêtych"
 				break
+			end
+		end
+	end
+end
+
+function GuiManager:onHover (x, y)
+	if self.hovered == nil or self.elements[self.hovered]:onHover(x, y) == false then
+		self.hovered = nil
+		for name, element in pairs(self.elements) do
+			if (element.onHover ~= nil) then
+				local temp = element:onHover(x, y)
+				if temp == true then
+					if element.onHover ~= nil then self.hovered = name end	-- dodaje element do "najechanych"
+					break
+				end
 			end
 		end
 	end

@@ -29,6 +29,9 @@ end
 
 function love.update (dt)
 
+	-- Mouse Hover
+	gui:onHover( love.mouse.getPosition() )
+
 	-- FPS
 	gui.elements["FPS"]:setText (love.timer.getFPS( ) .. " FPS")
 	
