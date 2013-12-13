@@ -69,22 +69,18 @@ end
 
 function GuiScreen:newButton (name, ...)
 	self.elements[name] = Button(name, unpack(arg))
-	--self.elements[name]:Init (unpack(arg))
 end
 
 function GuiScreen:newCheckBox (name, ...)
 	self.elements[name] = CheckBox(name, unpack(arg))
-	--self.elements[name]:Init (unpack(arg))
 end
 
 function GuiScreen:newLabel (name, ...)
 	self.elements[name] = Label(name, unpack(arg))
-	--self.elements[name]:Init (unpack(arg))
 end
 
 function GuiScreen:newProgressBar (name, ...)
 	self.elements[name] = ProgressBar(name, unpack(arg))
-	--self.elements[name]:Init (unpack(arg))
 end
 
 function GuiScreen:onClick (x, y)

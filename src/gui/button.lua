@@ -104,7 +104,7 @@ function Button:helpDraw (text, img)
 	love.graphics.print (self.text, self.x+5, self.y+10)
 end
 
-function Button:draw ()		-- TYMCZASOWO
+function Button:draw ()
 	if self.visible == true then
 		if self.enabled == true then
 			if self.clicked == true then

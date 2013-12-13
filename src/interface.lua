@@ -80,7 +80,7 @@ function screenTestInit()
 	Gui.screen[x].elements["btnTestDisabled"]:setEnabled(false)
 	Gui.screen[x]:newCheckBox ("testCheckBox", 35, 105, "Jestem CheckBoxem!", false)
 	Gui.screen[x]:newProgressBar ("testPBar", 35, 140, 300, 0, 100)
-	Gui.screen[x]:newButton ("btnPBPlus1", 35, 175, "+1", 50, screenTest_btnPBPlus)
+	Gui.screen[x]:newButton ("btnPBPlus", 35, 175, "+1", 50, screenTest_btnPBPlus)
 	Gui.screen[x]:newButton ("btnPBPlus2", 35, 210, "+1", 50, screenTest_btnPBPlus)
 	Gui.screen[x]:newButton ("btnMainMenu", 35, 500, "Wróć do menu głównego", 200, screen_Test_btnMainMenu)
 end

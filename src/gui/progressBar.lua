@@ -84,8 +84,5 @@ function ProgressBar:draw()
 		love.graphics.rectangle("fill", self.x+gui_pbMargin, self.y+(2*gui_pbMargin), self.width-(2*gui_pbMargin), gui_stdHeight-(4*gui_pbMargin))
 		love.graphics.setColor (clPBProgress)
 		love.graphics.rectangle("fill", self.x+gui_pbMargin, self.y+(2*gui_pbMargin), (self.width-(2*gui_pbMargin))*(self.currentProgress/self.maxProgress), gui_stdHeight-(4*gui_pbMargin))
-		
-		--love.graphics.setColor (clWhite)
-		--love.graphics.print (self.text, self.x+gui_stdHeight, self.y+10)
 	end
 end
