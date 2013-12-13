@@ -85,11 +85,21 @@ end
 
 function Button:onRelease () self.clicked = false end
 
-function Button:helpDraw (fill, line, text)
-	love.graphics.setColor (fill)
-	love.graphics.rectangle("fill", self.x, self.y, self.width, gui_stdHeight)
-	love.graphics.setColor (line)
-	love.graphics.rectangle("line", self.x, self.y, self.width, gui_stdHeight)
+function Button:helpDraw (text, img)
+	
+	local quads = Gui.skins[gui.skin].quads
+	local sizes = Gui.skins[gui.skin].sizes
+	love.graphics.drawq(img, quads.btn_left, self.x, self.y)
+	
+	local x = self.x + sizes.btn_left			-- Iterator pozycji
+	local r = self.x+self.width-sizes.btn_right	-- po³o¿enie prawej grafiki
+	while x <= r do
+		love.graphics.drawq(img, quads.btn_center, x, self.y)
+		x = x + sizes.btn_center
+	end
+	
+	love.graphics.drawq(img, quads.btn_right, r, self.y)
+	
 	love.graphics.setColor (text)
 	love.graphics.print (self.text, self.x+5, self.y+10)
 end
@@ -98,14 +108,14 @@ function Button:draw ()		-- TYMCZASOWO
 	if self.visible == true then
 		if self.enabled == true then
 			if self.clicked == true then
-				self:helpDraw ( clLGrey, clWhite, clWhite )
+				self:helpDraw ( clWhite, Gui.skins[gui.skin].images.btn_click )
 			elseif self.hovered == true then
-				self:helpDraw ( clGrey, clWhite, clWhite )
+				self:helpDraw ( clWhite, Gui.skins[gui.skin].images.btn_hover )
 			else
-				self:helpDraw ( clGrey, clLGrey, clWhite )
+				self:helpDraw ( clWhite, Gui.skins[gui.skin].images.btn_idle )
 			end
 		else
-			self:helpDraw ( clDGrey, clGrey, clLGrey )
+			self:helpDraw ( clLGrey, Gui.skins[gui.skin].images.btn_dis )
 		end
 	end
 end

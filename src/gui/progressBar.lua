@@ -9,7 +9,13 @@
 	gui_pbMargin	= 4			-- Margines ProgressBara (margines?!?)
 
 	
-	
+
+-------------
+-- Funkcje --
+
+
+
+
 -------------
 -- Klasa ----
 

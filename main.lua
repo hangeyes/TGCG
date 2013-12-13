@@ -1,6 +1,7 @@
 function love.load()
 
 	Class = require("src.libs.humpClass")
+	require ("src.paths")
 	require ("src.helpers.debugger")
 	require ("src.colors")
 	require ("src.interface")

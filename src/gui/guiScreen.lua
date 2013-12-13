@@ -3,14 +3,30 @@
 
 
 
+-------------
+-- Zmienne --
+
+
+
+
+-------------
+-- Funkcje --
+
+
+
+
+-------------
+-- Klasa ----
+
 GuiScreen = Class
 {
 	--------------
 	-- Atrybuty --
 	
 		-- clicked
-		-- hovered
 		-- elements {}
+		-- hovered
+		-- skin
 
 	------------
 	-- Metody --
@@ -31,9 +47,10 @@ GuiScreen = Class
 		-- draw ()
 }
 
-function GuiScreen:init ()
+function GuiScreen:init (skin)
 	self.clicked = nil
 	self.elements = {}
+	self.skin = skin
 end
 
 function GuiScreen:delete ()

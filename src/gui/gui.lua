@@ -15,6 +15,7 @@ require("src.gui.label")
 -- require("src.gui.guiList")		Klasa jeszcze nie istnieje
 require("src.gui.progressBar")
 -- require("src.gui.radioBox")	Klasa jeszcze nie istnieje
+require("src.gui.skin")
 -- require("src.gui.textEdit")	Klasa jeszcze nie istnieje
 
 
@@ -27,6 +28,12 @@ gui_stdHeight	= 32		-- Standardowa wysokość elementów GUI
 
 
 -------------
+-- Funkcje --
+
+
+
+
+-------------
 -- Klasa ----
 
 Gui = Class
@@ -35,6 +42,7 @@ Gui = Class
 	-- Atrybuty --
 	
 		-- screen {}
+		-- skins {}
 
 	------------
 	-- Metody --
@@ -48,8 +56,10 @@ Gui = Class
 function Gui:init (firstScreen)
 	gui = GuiScreen()
 	self.screen = {}
+	self.skins = {}
 	
 	InterfaceCreateScreens ()
+	InterfaceCreateSkins ()
 	
 	if self.screen[firstScreen] ~= nil then
 		gui = self.screen[firstScreen]
