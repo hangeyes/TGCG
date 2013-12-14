@@ -38,6 +38,7 @@ Button = Class
 		-- onRelease ()
 		
 		-- draw ()
+		-- drawOne ()
 }
 
 function Button:init (name, x, y, text, width, clickAction)
@@ -85,7 +86,23 @@ end
 
 function Button:onRelease () self.clicked = false end
 
-function Button:helpDraw (text, img)
+function Button:draw ()
+	if self.visible == true then
+		if self.enabled == true then
+			if self.clicked == true then
+				self:drawOne ( clWhite, Gui.skins[gui.skin].images.btn_click )
+			elseif self.hovered == true then
+				self:drawOne ( clWhite, Gui.skins[gui.skin].images.btn_hover )
+			else
+				self:drawOne ( clWhite, Gui.skins[gui.skin].images.btn_idle )
+			end
+		else
+			self:drawOne ( clLGrey, Gui.skins[gui.skin].images.btn_dis )
+		end
+	end
+end
+
+function Button:drawOne (text, img)
 	
 	local quads = Gui.skins[gui.skin].quads
 	local sizes = Gui.skins[gui.skin].sizes
@@ -102,20 +119,4 @@ function Button:helpDraw (text, img)
 	
 	love.graphics.setColor (text)
 	love.graphics.print (self.text, self.x+5, self.y+10)
-end
-
-function Button:draw ()
-	if self.visible == true then
-		if self.enabled == true then
-			if self.clicked == true then
-				self:helpDraw ( clWhite, Gui.skins[gui.skin].images.btn_click )
-			elseif self.hovered == true then
-				self:helpDraw ( clWhite, Gui.skins[gui.skin].images.btn_hover )
-			else
-				self:helpDraw ( clWhite, Gui.skins[gui.skin].images.btn_idle )
-			end
-		else
-			self:helpDraw ( clLGrey, Gui.skins[gui.skin].images.btn_dis )
-		end
-	end
 end

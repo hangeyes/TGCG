@@ -26,6 +26,7 @@ GuiScreen = Class
 		-- clicked
 		-- elements {}
 		-- hovered
+		-- selected
 		-- skin
 
 	------------
@@ -39,9 +40,11 @@ GuiScreen = Class
 		-- newCheckBox (name, x, y, text, checked)
 		-- newLabel (name, x, y, text, color, font)
 		-- newProgressBar (name, x, y, width, currentProgress, maxProgress)
+		-- newTextBox (name, x, y, text, width)
 		
 		-- onClick (x, y)
 		-- onHover (x, y)
+		-- onKeyPress ( key )
 		-- onRelease ()
 		
 		-- draw ()
@@ -50,6 +53,7 @@ GuiScreen = Class
 function GuiScreen:init (skin)
 	self.clicked = nil
 	self.elements = {}
+	self.selected = nil
 	self.skin = skin
 end
 
@@ -67,29 +71,23 @@ function GuiScreen:deleteElement (name)
 	elements[name] = nil
 end
 
-function GuiScreen:newButton (name, ...)
-	self.elements[name] = Button(name, unpack(arg))
-end
-
-function GuiScreen:newCheckBox (name, ...)
-	self.elements[name] = CheckBox(name, unpack(arg))
-end
-
-function GuiScreen:newLabel (name, ...)
-	self.elements[name] = Label(name, unpack(arg))
-end
-
-function GuiScreen:newProgressBar (name, ...)
-	self.elements[name] = ProgressBar(name, unpack(arg))
-end
+function GuiScreen:newButton (name, ...) self.elements[name] = Button(name, unpack(arg)) end
+function GuiScreen:newCheckBox (name, ...) self.elements[name] = CheckBox(name, unpack(arg)) end
+function GuiScreen:newLabel (name, ...) self.elements[name] = Label(name, unpack(arg)) end
+function GuiScreen:newProgressBar (name, ...) self.elements[name] = ProgressBar(name, unpack(arg)) end
+function GuiScreen:newTextBox (name, ...) self.elements[name] = TextBox(name, unpack(arg)) end
 
 function GuiScreen:onClick (x, y)
-	for name, element in pairs(self.elements) do
-		if (element.onClick ~= nil) then
-			local temp = element:onClick(x, y)
-			if temp == true then
-				if element.onRelease ~= nil then self.clicked = name end	-- dodaje klikniêty element do "naciœniêtych"
-				break
+	if self.selected == nil or self.elements[self.selected]:onClick(x, y) == false then
+		self.selected = nil
+		for name, element in pairs(self.elements) do
+			if (element.onClick ~= nil) then
+				local temp = element:onClick(x, y)
+				if temp == true then
+					if element.onRelease ~= nil then self.clicked = name end	-- dodaje klikniêty element do "naciœniêtych"
+					if element.onKeypress ~= nil then self.selected = name end	-- dodaje klikniêty do "zaznaczonych"
+					break
+				end
 			end
 		end
 	end
@@ -108,6 +106,10 @@ function GuiScreen:onHover (x, y)
 			end
 		end
 	end
+end
+
+function GuiScreen:onKeyPress ( key )
+	if self.selected ~= nil then self.elements[self.selected]:onKeypress( key ) end
 end
 
 function GuiScreen:onRelease ()

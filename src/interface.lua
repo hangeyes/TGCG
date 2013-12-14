@@ -34,6 +34,7 @@ function InterfaceCreateSkins ()
 	local x = "1"
 	Gui.skins[x] = Skin (x)
 	Gui.skins[x]:makeButtonQuads (5, 5, 9, 21, gui_stdHeight)
+	Gui.skins[x]:makeTextBoxQuads (5, 5, 9, 21, gui_stdHeight)
 	
 end
 
@@ -83,6 +84,7 @@ function screenTestInit()
 	Gui.screen[x]:newButton ("btnPBPlus", 35, 175, "+1", 50, screenTest_btnPBPlus)
 	Gui.screen[x]:newButton ("btnPBPlus2", 35, 210, "+1", 50, screenTest_btnPBPlus)
 	Gui.screen[x]:newButton ("btnMainMenu", 35, 500, "Wróć do menu głównego", 200, screen_Test_btnMainMenu)
+	Gui.screen[x]:newTextBox ("tbxSimple", 35, 245, "TextBox", 200, 20)
 end
 
 function screenTest_btnPBPlus ()

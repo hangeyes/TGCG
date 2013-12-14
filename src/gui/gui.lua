@@ -16,13 +16,16 @@ require("src.gui.label")
 require("src.gui.progressBar")
 -- require("src.gui.radioBox")	Klasa jeszcze nie istnieje
 require("src.gui.skin")
--- require("src.gui.textEdit")	Klasa jeszcze nie istnieje
+require("src.gui.textBox")
 
 
 
 -------------
 -- Zmienne --
 
+gui_blinkState	= 0			-- Stan mrugnięcia kursora
+gui_stdCursor	= "_"		-- Standardowy wygląd kursora
+gui_blinkDelay	= 0.5		-- Standardowa częstotliwość mrugania kursora (s)
 gui_stdHeight	= 32		-- Standardowa wysokość elementów GUI
 
 
@@ -50,7 +53,9 @@ Gui = Class
 		-- init (firstScreen)
 		-- delete ()
 		
+		-- blink ()
 		-- switch ( screen)
+		-- update ()
 }
 
 function Gui:init (firstScreen)
@@ -64,6 +69,8 @@ function Gui:init (firstScreen)
 	if self.screen[firstScreen] ~= nil then
 		gui = self.screen[firstScreen]
 	end
+	
+	self.blink()
 end
 
 function Gui:delete ()
@@ -73,6 +80,16 @@ function Gui:delete ()
 	end
 end
 
+function Gui.blink ()
+	if gui_blinkState == 0 then gui_blinkState = 1
+	else gui_blinkState = 0 end
+	Timer.add( gui_blinkDelay, Gui.blink )
+end
+
 function Gui:switch ( screen )
 	gui = self.screen[screen]
+end
+
+function Gui:update (dt)
+	
 end

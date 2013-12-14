@@ -13,7 +13,7 @@ clLGrey			= { 192,192,192,255	}
 clDGrey			= { 64,	64,	64,	255	}
 
 
-
+clBackground	= {	60,	63,	70,	255 }
 clPBProgress	= { 39,	110,255,255	}
 
 

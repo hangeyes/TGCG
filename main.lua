@@ -1,18 +1,22 @@
 function love.load()
 
-	Class = require("src.libs.humpClass")
-	require ("src.paths")
-	require ("src.helpers.debugger")
-	require ("src.colors")
-	require ("src.interface")
+	Class = require"src.libs.humpClass"
+	Timer = require "src.libs.humpTimer"
+	require "src.paths"
+	require "src.helpers.debugger"
+	require "src.helpers.text"
+	require "src.colors"
+	require "src.interface"
 
 	Gui:init("MainMenu")
 	
-	degree = 0
+	love.graphics.setBackgroundColor ( clBackground )
 end
 
 function love.update (dt)
 
+	Timer.update(dt)
+	Gui:update(dt)
 	-- Mouse Hover
 	gui:onHover( love.mouse.getPosition() )
 
@@ -41,7 +45,7 @@ end
  
 function love.keypressed (key, unicode)
 
-	-- your code
+	gui:onKeyPress(key)
 	
 end
  
