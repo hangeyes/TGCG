@@ -7,6 +7,7 @@
 -- Sekcja ladujaca podklasy --
 
 require ("src.gui.gui")
+require ("src.net.network")
 
 
 
@@ -59,10 +60,13 @@ end
 
 function screen_MainMenu_btnConnect ()
 	-- Kod po kliknieciu Polacz
+	--createNetworkNode("client",gui.elements["tbxIP"]:getText())
+	--gui.elements["tbxIP"]:setText(type(net_object))
 end
 
 function screen_MainMenu_btnHost ()
 	-- Kod po kliknieciu Hostuj
+	--createNetworkNode("server",nil)
 end
 
 function screen_MainMenu_btnTest ()	-- Przelacza na ekran testowania GUI
@@ -81,7 +85,7 @@ function screenTestInit()
 	Gui.screen[x].elements["btnTestDisabled"]:setEnabled(false)
 	Gui.screen[x]:newCheckBox ("testCheckBox", 35, 105, "Jestem CheckBoxem!", false)
 	Gui.screen[x]:newProgressBar ("testPBar", 35, 140, 300, 0, 100)
-	Gui.screen[x]:newButton ("btnPBPlus", 35, 175, "+1", 50, screenTest_btnPBPlus)
+	Gui.screen[x]:newButton ("btnPBPlus1", 35, 175, "+1", 50, screenTest_btnPBPlus)
 	Gui.screen[x]:newButton ("btnPBPlus2", 35, 210, "+1", 50, screenTest_btnPBPlus)
 	Gui.screen[x]:newButton ("btnMainMenu", 35, 500, "Wróć do menu głównego", 200, screen_Test_btnMainMenu)
 	Gui.screen[x]:newTextBox ("tbxSimple", 35, 245, "TextBox", 200, 20)

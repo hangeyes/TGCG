@@ -107,7 +107,7 @@ end
 function TextBox:setCursor (place)			self.cursor = place end
 function TextBox:setEnabled (bool) 			self.enabled = bool end
 function TextBox:setSize (width) 			self.width = width end
-function TextBox:setText (text) 			self.text = boot end
+function TextBox:setText (text) 			self.text = text end
 
 function TextBox:isOver (x, y)
 	if (x >= self.x) and (y >= self.y) and (self.x + self.width >= x) and (self.y + gui_stdHeight >= y) then

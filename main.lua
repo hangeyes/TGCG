@@ -7,6 +7,7 @@ function love.load()
 	require "src.helpers.text"
 	require "src.colors"
 	require "src.interface"
+	require "src.net.network"
 
 	Gui:init("MainMenu")
 	
@@ -22,6 +23,9 @@ function love.update (dt)
 
 	-- FPS
 	gui.elements["FPS"]:setText (love.timer.getFPS( ) .. " FPS")
+	
+	-- Network
+	--updateNetwork(dt)
 
 end
 
