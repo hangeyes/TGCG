@@ -49,7 +49,7 @@ function screenMainMenuInit()
 	
 	Gui.screen[x]:newButton ("btnConnect", 100, 100, "Polacz", 100, screen_MainMenu_btnConnect)
 	Gui.screen[x]:newButton ("btnHost", 250, 100, "Hostuj", 100, screen_MainMenu_btnHost)
-	Gui.screen[x]:newLabel ("lblIP", 100, 140, "Tutaj bedzie TextBox na nr IP", clWhite)
+	Gui.screen[x]:newTextBox ("tbxIP", 100, 140, "Tutaj bedzie TextBox na nr IP", 200, 15)
 	Gui.screen[x]:newLabel ("lblDane1", 100, 200, "Tekst z danymi 1", clWhite)
 	Gui.screen[x]:newLabel ("lblDane2", 100, 232, "Tekst z danumi 2", clWhite)
 	Gui.screen[x]:newLabel ("lblDane3", 100, 264, "Tekst z danumi 3", clWhite)

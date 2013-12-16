@@ -148,3 +148,16 @@ function Client:receive() -- zwraca odebrane dane lub false i treść błędu
 	--END--
 	
 end
+
+function Client:update(dt)
+	if not self.connected then return end
+	assert(dt, "Update needs a dt")
+	
+	if self.callbacks.recv then
+		local data, err = self:receive()
+		while data do
+			self.callbacks.recv(data)
+			data, err = self:receive()
+		end
+	end
+end
