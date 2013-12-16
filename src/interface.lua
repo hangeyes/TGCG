@@ -7,7 +7,7 @@
 -- Sekcja ladujaca podklasy --
 
 require ("src.gui.gui")
-require ("src.net.network")
+--require ("src.net.network")
 
 
 

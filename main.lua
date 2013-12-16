@@ -7,7 +7,6 @@ function love.load()
 	require "src.helpers.text"
 	require "src.colors"
 	require "src.interface"
-	require "src.net.network"
 
 	Gui:init("MainMenu")
 	
