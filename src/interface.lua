@@ -60,13 +60,10 @@ end
 
 function screen_MainMenu_btnConnect ()
 	-- Kod po kliknieciu Polacz
-	--createNetworkNode("client",gui.elements["tbxIP"]:getText())
-	--gui.elements["tbxIP"]:setText(type(net_object))
 end
 
 function screen_MainMenu_btnHost ()
 	-- Kod po kliknieciu Hostuj
-	--createNetworkNode("server",nil)
 end
 
 function screen_MainMenu_btnTest ()	-- Przelacza na ekran testowania GUI
