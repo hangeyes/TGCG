@@ -18,9 +18,14 @@ function createNetworkNode(node,ip)
 	if node then
 		if node == "server" then
 			net_object = Server()
+			net_object:listen()
+			net_object:connect()
+			net_object:setCallback(receiveCallback)
 		elseif node == "client" then
 			assert(ip, "If you want to connect, you need an IP adress")
 			net_object = Client(ip)
+			net_object:connect()
+			net_object:setCallback(receiveCallback)
 		end
 	end
 end
@@ -31,10 +36,14 @@ function updateNetwork(dt)
 	end
 end
 
-function send()
+function networkSend()
 	if node == "server" then
 		net_object:send(net_serverMessage)
-	elseif node == "client"
+	elseif node == "client" then
 		net_object:send(net_clientMessage)
 	end
+end
+
+function receiveCallback()
+	return data
 end

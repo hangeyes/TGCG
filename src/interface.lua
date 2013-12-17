@@ -7,7 +7,7 @@
 -- Sekcja ladujaca podklasy --
 
 require ("src.gui.gui")
---require ("src.net.network")
+require ("src.net.network")
 
 
 
@@ -50,6 +50,7 @@ function screenMainMenuInit()
 	
 	Gui.screen[x]:newButton ("btnConnect", 100, 100, "Polacz", 100, screen_MainMenu_btnConnect)
 	Gui.screen[x]:newButton ("btnHost", 250, 100, "Hostuj", 100, screen_MainMenu_btnHost)
+	Gui.screen[x]:newButton ("btnSend", 400, 100, "Wyslij", 100, screen_MainMenu_btnSend)
 	Gui.screen[x]:newTextBox ("tbxIP", 100, 140, "Tutaj bedzie TextBox na nr IP", 200, 15)
 	Gui.screen[x]:newLabel ("lblDane1", 100, 200, "Tekst z danymi 1", clWhite)
 	Gui.screen[x]:newLabel ("lblDane2", 100, 232, "Tekst z danumi 2", clWhite)
@@ -60,10 +61,16 @@ end
 
 function screen_MainMenu_btnConnect ()
 	-- Kod po kliknieciu Polacz
+	createNetworkNode("client",gui.elements["tbxIP"]:getText())
 end
 
 function screen_MainMenu_btnHost ()
 	-- Kod po kliknieciu Hostuj
+	createNetworkNode("server",nil)
+end
+
+function screen_MainMenu_btnSend ()
+	networkSend()
 end
 
 function screen_MainMenu_btnTest ()	-- Przelacza na ekran testowania GUI

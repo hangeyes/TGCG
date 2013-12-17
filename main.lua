@@ -24,7 +24,7 @@ function love.update (dt)
 	gui.elements["FPS"]:setText (love.timer.getFPS( ) .. " FPS")
 	
 	-- Network
-	--updateNetwork(dt)
+	updateNetwork(dt)
 
 end
 

@@ -22,7 +22,7 @@ function Client:init(ip)	-- konstruktor
 	
 	self.connected = false
 	self.socket = nil
-	self.callabcks = {
+	self.callbacks = {
 		recv = nil
 	}
 end
@@ -101,4 +101,8 @@ function Client:update(dt)
 			data, err = self:receive()
 		end
 	end
+end
+
+function Client:setCallback(recv)
+	self.callbacks.recv = recv
 end

@@ -16,14 +16,14 @@ function Server:init()
 end
 
 function Server:listen()
-	self:createSocket
+	self:createSocket()
 	self.socket:bind("*", self.port)
 	self.socket:listen(1)
 end
 
 function Server:createSocket()
-	self.socket = socket.tcp
-	self.socket:settimeout(0)
+	self.socket = socket.tcp()
+	self.socket:settimeout(5)
 	self.socket:setoption("reuseaddr", true)
 end
 
@@ -36,10 +36,15 @@ function Server:send(data)
 end
 
 function Server:connect()
-	local data = self:receive()
-	if data == self.handshake then
-		self.connected = true
+	self:accept()
+	if self.client then
+		local data = self:receive()
+		if data == self.handshake then
+			self.connected = true
+		end
+		return self.connected
 	end
+	return self.connected, "Brak połączeń"
 end
 
 function Server:disconnect()
@@ -55,10 +60,10 @@ end
 
 function Server:receive()
 	local packet = ""
-	local data, _, partial = client:receive("*l")
+	local data, _, partial = self.client:receive("*l")
 	while data do
 		packet = packet .. data .. "\n"
-		data, _, partial = client:receive("*l")
+		data, _, partial = self.client:receive("*l")
 	end
 	if not data and partial then
 		packet = packet .. partial
@@ -67,5 +72,23 @@ function Server:receive()
 		return packet
 	end
 	return nil
+end
+
+function Server:update(dt)
+	if self.connected and self.client then
+		assert(dt, "Update needs a dt")
+
+		local data = self:receive()
+		while data do
+			if self.callbacks.recv then
+				self.callbacks.recv(data)
+			end
+			data = self.receive()
+		end
+	end
+end
+
+function Server:setCallback(recv)
+	self.callbacks.recv = recv
 end
 	
