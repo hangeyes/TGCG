@@ -50,12 +50,12 @@ Gui = Class
 	------------
 	-- Metody --
 	
-		-- init (firstScreen)
+		-- init ( firstScreen )
 		-- delete ()
 		
 		-- blink ()
-		-- switch ( screen)
-		-- update ()
+		-- switch ( screen )
+		-- update ( dt )
 }
 
 function Gui:init (firstScreen)
