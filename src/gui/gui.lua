@@ -23,9 +23,9 @@ require("src.gui.textBox")
 -------------
 -- Zmienne --
 
-gui_blinkState	= 0			-- Stan mrugnięcia kursora
-gui_stdCursor	= "_"		-- Standardowy wygląd kursora
 gui_blinkDelay	= 0.5		-- Standardowa częstotliwość mrugania kursora (s)
+gui_blinkState	= false		-- Stan mrugnięcia kursora
+gui_stdCursor	= "_"		-- Standardowy wygląd kursora
 gui_stdHeight	= 32		-- Standardowa wysokość elementów GUI
 
 
@@ -81,8 +81,8 @@ function Gui:delete ()
 end
 
 function Gui.blink ()
-	if gui_blinkState == 0 then gui_blinkState = 1
-	else gui_blinkState = 0 end
+	if gui_blinkState == false then gui_blinkState = true
+	else gui_blinkState = false end
 	Timer.add( gui_blinkDelay, Gui.blink )
 end
 
