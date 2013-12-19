@@ -9,36 +9,37 @@ Button = Class
 	--------------
 	-- Atrybuty --
 
-		-- click		-- Funkcja wywo³ywana podczas klikniêcia
-		-- clicked		-- Czy przycisk jest w danej chwili wciœniety
+		-- click		-- Funkcja wywoï¿½ywana podczas klikniï¿½cia
+		-- clicked		-- Czy przycisk jest w danej chwili wciï¿½niety
 		-- enabled		-- Czy przycisk jest aktywny
-		-- hovered		-- Czy nad przyciskiem jest wskaŸnik myszy?
-		-- text			-- Tekst wyœwietany przez przycisk
-		-- width		-- Szerokoœæ przycisku
+		-- hovered		-- Czy nad przyciskiem jest wskaï¿½nik myszy?
+		-- text			-- Tekst wyï¿½wietany przez przycisk
+		-- width		-- Szerokoï¿½ï¿½ przycisku
 
 	------------
 	-- Metody --
 	
 		-- init (name, x, y, text, width, clickAction)	-- Konstruktor
+		-- delete ()									-- Destruktor
 		
 		-- getClicked ()	: bool
 		-- getEnabled ()	: bool
-		-- getText ()		: string
 		-- getSize ()		: int
+		-- getText ()		: string
 		
 		-- setClick (clickAction)
 		-- setEnabled (bool)
 		-- setSize (width)
 		-- setText (text)
 		
-		-- isOver (x, y)
+		-- isOver (x, y)	: bool
 		
-		-- onClick (x, y)
-		-- onHover (x, y)
+		-- onClick (x, y)	: bool
+		-- onHover (x, y)	: bool
 		-- onRelease ()
 		
 		-- draw ()
-		-- drawOne ()
+		-- drawOne (color, img)
 }
 
 function Button:init (name, x, y, text, width, clickAction)
@@ -50,6 +51,8 @@ function Button:init (name, x, y, text, width, clickAction)
 	self.width	= width
 end
 
+function Button:delete () end
+
 function Button:getClicked () 			return self.clicked end
 function Button:getEnabled () 			return self.enabled end
 function Button:getText () 				return self.text end
@@ -58,7 +61,7 @@ function Button:getSize () 				return self.width end
 function Button:setClick (clickAction) 	self.click = clickAction end
 function Button:setEnabled (bool) 		self.enabled = bool end
 function Button:setSize (width) 		self.width = width end
-function Button:setText (text) 			self.text = boot end
+function Button:setText (text) 			self.text = text end
 
 function Button:isOver (x, y)
 	if (x >= self.x) and (y >= self.y) and (self.x + self.width >= x) and (self.y + gui_stdHeight >= y) then
@@ -102,14 +105,14 @@ function Button:draw ()
 	end
 end
 
-function Button:drawOne (text, img)
+function Button:drawOne (color, img)
 	
 	local quads = Gui.skins[gui.skin].quads
 	local sizes = Gui.skins[gui.skin].sizes
 	love.graphics.drawq(img, quads.btn_left, self.x, self.y)
 	
 	local x = self.x + sizes.btn_left			-- Iterator pozycji
-	local r = self.x+self.width-sizes.btn_right	-- po³o¿enie prawej grafiki
+	local r = self.x+self.width-sizes.btn_right	-- poï¿½oï¿½enie prawej grafiki
 	while x <= r do
 		love.graphics.drawq(img, quads.btn_center, x, self.y)
 		x = x + sizes.btn_center
@@ -117,6 +120,6 @@ function Button:drawOne (text, img)
 	
 	love.graphics.drawq(img, quads.btn_right, r, self.y)
 	
-	love.graphics.setColor (text)
+	love.graphics.setColor (color)
 	love.graphics.print (self.text, self.x+5, self.y+10)
 end
