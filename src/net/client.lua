@@ -12,6 +12,14 @@ Client = Class
 
 --------------
 ----Metody----
+	-- Client:init(ip)	-- ip jest łańcuchem znaków, który reprezentuje adres IPv4 serwera, z którym ma zostać nawiązane połączenie
+	-- Client:setCallback(recv)	-- recv jest funkcją wywoływaną za każdym razem, gdy klient odbierze dane od serwera
+	-- Client:createSocket()
+	-- Client:connect()	-- bool, err -- zwraca parę (true, nil) jeśli udało się połączyć z serwerem. W przeciwnym wypadku zwraca (false, błąd)
+	-- Client:disconnect()
+	-- Client:send(data)	-- int	-- zwraca liczbę wysłanych bajtów lub false jeśli wysyłanie się nie powiodło.
+	-- Client:receive()	-- string	-- zwraca odebrane dane
+	-- Client:update(dt)
 
 }
 
@@ -101,8 +109,4 @@ function Client:update(dt)
 			data, err = self:receive()
 		end
 	end
-end
-
-function Client:setCallback(recv)
-	self.callbacks.recv = recv
 end

@@ -14,7 +14,7 @@ net_clientMessage = "Jestem klientem \n odebralem dane"
 --net_node = nil -- stwierdza, czy program powinien zachowywać się jak klient (net_node = "client") czy serwer (net_node = "server")
 net_object = nil -- to samo, co wyżej, tylko przechowuje obiekt będący serwerem lub klientem
 
-function createNetworkNode(node,ip)
+function createNetworkNode(node,ip)	-- tworzy obiekt client lub server, w zależności od potrzeb.
 	if node then
 		if node == "server" then
 			net_object = Server()
@@ -30,13 +30,13 @@ function createNetworkNode(node,ip)
 	end
 end
 
-function updateNetwork(dt)
+function updateNetwork(dt)	-- funckja wykonywana w każdym przejściu pętli głównej gry, odświeża wszystkie dane związane z pracą sieci
 	if net_object then
 		net_object:update(dt)
 	end
 end
 
-function networkSend()
+function networkSend()	-- wysyła wiadomość testową
 	if node == "server" then
 		net_object:send(net_serverMessage)
 	elseif node == "client" then
@@ -44,6 +44,6 @@ function networkSend()
 	end
 end
 
-function receiveCallback()
+function receiveCallback()	-- callback dla klienta i serwera
 	return data
 end

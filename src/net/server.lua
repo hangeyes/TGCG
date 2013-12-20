@@ -1,5 +1,30 @@
 Server = Class
 {
+	--------------
+	-- Atrybuty --
+	
+	-- connected	-- bool
+	-- handshake	-- string
+	-- port			-- int
+	-- callbacks {
+		-- recv		-- function
+		}
+	-- socket		-- master/server socket
+	-- client		-- master/client socket
+	
+	--------------
+	--- Metody ---
+	
+	-- Server:init()
+	-- Server:listen()
+	-- Server:accept()
+	-- Server:createSocket()
+	-- Server:send(data)
+	-- Server:connect()	-- bool, string	-- zwraca parę (true, nil) jeśli nawiązano połączenie z klientem, w przeciwnym wypadku (false, błąd)
+	-- Server:disconnect()
+	-- Server:receive()	-- string	-- zwraca odebrane dane lub nil, gdy nic nie zostało odebrane
+	-- Server:update(dt)
+	-- Server:setCallback(recv)	-- recv oznacza to samo co dla klienta.
 }
 
 function Server:init()
