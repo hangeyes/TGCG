@@ -1,4 +1,4 @@
-snd_soundDecoder = SoundDecoder()
+snd_soundDecoder = nil
 
 SoundDecoder = Class
 {
