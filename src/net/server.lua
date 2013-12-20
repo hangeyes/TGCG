@@ -8,7 +8,7 @@ Server = Class
 	-- port			-- int
 	-- callbacks {
 		-- recv		-- function
-		}
+		
 	-- socket		-- master/server socket
 	-- client		-- master/client socket
 	

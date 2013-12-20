@@ -11,6 +11,7 @@ function love.load()
 	Gui:init("MainMenu")
 	
 	love.graphics.setBackgroundColor ( clBackground )
+	snd_soundDecoder = SoundDecoder()
 end
 
 function love.update (dt)
