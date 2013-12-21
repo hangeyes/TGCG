@@ -12,6 +12,11 @@
 -------------
 -- Funkcje --
 
+function boolToString (value)				-- Konwertuje bool to string
+	if value then return "True"
+	else return "False" end
+end
+
 function textBackspace (text, place)			-- Stosuje backspace w miejscu "place"
 	if place == nil or place >= string.len(text) then
 		return string.sub( text, 1, -2 )
@@ -22,7 +27,7 @@ function textBackspace (text, place)			-- Stosuje backspace w miejscu "place"
 	end
 end
 
-function textDelete (text, place)			-- Stosuje backspace w miejscu "place"
+function textDelete (text, place)			-- Stosuje delete w miejscu "place"
 	if place < string.len(text) then
 		return string.sub( text, 1, place ) .. string.sub( text, place+2 )
 	else
