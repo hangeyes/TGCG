@@ -13,7 +13,7 @@ end
 
 function SoundDecoder:initFiles()
 	-- files["name"] = "ścieżka"
-	self.files["test"] = "sound/testsound.ogg"
+	self.files["test"] = "sound/lol.wav"
 end
 
 function SoundDecoder:play(filename)
