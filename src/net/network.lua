@@ -44,6 +44,6 @@ function networkSend()	-- wysyła wiadomość testową
 	end
 end
 
-function receiveCallback()	-- callback dla klienta i serwera
-	return data
+function receiveCallback(data)	-- callback dla klienta i serwera
+	Gui.screen["MainMenu"].elements["lblDane1"]:setText(data)
 end
