@@ -20,6 +20,7 @@ function createNetworkNode(node,ip)	-- tworzy obiekt client lub server, w zależ
 			net_object = Server()
 			net_object:listen()
 			net_object:connect()
+			Gui.screen["MainMenu"].elements["lblDane1"]:setText(boolToString(net_object:getConnected()))
 			net_object:setCallback(receiveCallback)
 		elseif node == "client" then
 			assert(ip, "If you want to connect, you need an IP adress")
