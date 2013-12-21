@@ -110,3 +110,7 @@ function Client:update(dt)
 		end
 	end
 end
+
+function Client:getConnected()
+	return self.connected
+end

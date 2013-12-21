@@ -116,4 +116,7 @@ end
 function Server:setCallback(recv)
 	self.callbacks.recv = recv
 end
-	
+
+function Server:getConnected()
+	return self.connected
+end
