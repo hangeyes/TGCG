@@ -27,12 +27,14 @@ CheckBox = Class
 	
 		-- checked
 		-- enabled
+		-- hovered
 		-- text
 
 	------------
 	-- Metody --
 	
-		-- init (text, x, y, checked)
+		-- init (name, x, y, text, checked)
+		-- delete ()
 
 		-- getChecked ()	: bool
 		-- getEnabled ()	: bool
@@ -51,10 +53,13 @@ CheckBox = Class
 
 function CheckBox:init (name, x, y, text, checked)
 	GuiElement.init(self, name, x, y)
-	self.checked= checked
+	if checked == true then self.checked = true
+	else self.checked = false end
 	self.enabled= true
 	self.text	= text
 end
+
+function CheckBox:delete () end;
 
 function CheckBox:getChecked ()		return self.checked end
 function CheckBox:getEnabled ()		return self.enabled end
