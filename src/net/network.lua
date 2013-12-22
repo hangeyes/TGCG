@@ -18,15 +18,15 @@ function createNetworkNode(node,ip)	-- tworzy obiekt client lub server, w zależ
 	if node then
 		if node == "server" then
 			net_object = Server()
+			Gui.screen["MainMenu"].elements["lblDane3"]:setText("server object created")
 			net_object:listen()
+			Gui.screen["MainMenu"].elements["lblDane4"]:setText("listen")
 			net_object:connect()
-			Gui.screen["MainMenu"].elements["lblDane1"]:setText(boolToString(net_object:getConnected()))
 			net_object:setCallback(receiveCallback)
 		elseif node == "client" then
 			assert(ip, "If you want to connect, you need an IP adress")
 			net_object = Client(ip)
 			net_object:connect()
-			Gui.screen["MainMenu"].elements["lblDane1"]:setText(boolToString(net_object:getConnected()))
 			net_object:setCallback(receiveCallback)
 		end
 	end
@@ -35,6 +35,8 @@ end
 function updateNetwork(dt)	-- funckja wykonywana w każdym przejściu pętli głównej gry, odświeża wszystkie dane związane z pracą sieci
 	if net_object then
 		net_object:update(dt)
+		Gui.screen["MainMenu"].elements["lblDane1"]:setText(boolToString(net_object:getConnected()))
+		--Gui.screen["MainMenu"].elements["lblDane2"]:setText(err)
 	end
 end
 
@@ -47,5 +49,5 @@ function networkSend()	-- wysyła wiadomość testową
 end
 
 function receiveCallback(data)	-- callback dla klienta i serwera
-	Gui.screen["MainMenu"].elements["lblDane1"]:setText(data)
+	Gui.screen["MainMenu"].elements["lblDane2"]:setText(data)
 end

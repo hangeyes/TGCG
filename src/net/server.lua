@@ -48,12 +48,20 @@ end
 
 function Server:createSocket()
 	self.socket = socket.tcp()
-	self.socket:settimeout(5)
+	self.socket:settimeout(0)
 	self.socket:setoption("reuseaddr", true)
 end
 
 function Server:accept()
 	self.client = self.socket:accept()
+	if self.client then
+		self.client:settimeout(0)
+		Gui.screen["MainMenu"].elements["lblDane4"]:setText("po accept, true")
+		return true
+	else
+		Gui.screen["MainMenu"].elements["lblDane4"]:setText("po accept, false")
+		return false
+	end
 end
 
 function Server:send(data)
@@ -62,12 +70,15 @@ end
 
 function Server:connect()
 	self:accept()
+	
 	if self.client then
 		local data = self:receive()
-		if data == self.handshake then
+		Gui.screen["MainMenu"].elements["lblDane2"]:setText(data)
+		if data == self.handshake .. "\n" .. "\n" then
 			self.connected = true
+			
 		end
-		return self.connected
+		return self.connected, "no message"
 	end
 	return self.connected, "Brak połączeń"
 end
@@ -75,6 +86,7 @@ end
 function Server:disconnect()
 	if self.connected == true then
 		local data = self:receive()
+		
 		if data == self.handshake then
 			self.connected = false
 			self.client:close()
@@ -86,6 +98,9 @@ end
 function Server:receive()
 	local packet = ""
 	local data, _, partial = self.client:receive("*l")
+	if data == self.handshake then
+		self. connected = true
+	end
 	while data do
 		packet = packet .. data .. "\n"
 		data, _, partial = self.client:receive("*l")
@@ -94,13 +109,14 @@ function Server:receive()
 		packet = packet .. partial
 	end
 	if packet ~= "" then
+		Gui.screen["MainMenu"].elements["lblDane2"]:setText(packet)
 		return packet
 	end
 	return nil
 end
 
 function Server:update(dt)
-	if self.connected and self.client then
+	if self.client then
 		assert(dt, "Update needs a dt")
 
 		local data = self:receive()
@@ -110,6 +126,9 @@ function Server:update(dt)
 			end
 			data = self.receive()
 		end
+		
+	else
+		self:connect()
 	end
 end
 

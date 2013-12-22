@@ -57,6 +57,7 @@ function screenMainMenuInit()
 	Gui.screen[x]:newLabel ("lblDane1", 100, 200, "Tekst z danymi 1", clWhite)
 	Gui.screen[x]:newLabel ("lblDane2", 100, 232, "Tekst z danumi 2", clWhite)
 	Gui.screen[x]:newLabel ("lblDane3", 100, 264, "Tekst z danumi 3", clWhite)
+	Gui.screen[x]:newLabel ("lblDane4", 100, 296, "Tekst z danymi 4", clWhite)
 	
 	Gui.screen[x]:newButton ("btnTest", 100, 500, "Ekrany testowe", 110, screen_MainMenu_btnTest)
 end
