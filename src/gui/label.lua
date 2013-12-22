@@ -9,17 +9,18 @@ Label = Class
 	--------------
 	-- Atrybuty --
 	
-		-- text
 		-- color
 		-- font
+		-- text
 	
 	------------
 	-- Metody --
 	
 		-- init (name, x, y, text, color, font)
+		-- delete ()
 		
-		-- getText ()	: string
 		-- getColor ()	: color
+		-- getText ()	: string
 
 		-- setFormat (color, font)
 		-- setText (text)
@@ -34,8 +35,10 @@ function Label:init (name, x, y, text, color, font)
 	self.font	= font
 end
 
-function Label:getText ()		return self.text end
+function Label:delete () end;
+
 function Label:getColor ()		return self.color end
+function Label:getText ()		return self.text end
 
 function Label:setFormat (color, font)
 	if color ~= nil then self.color = color end
